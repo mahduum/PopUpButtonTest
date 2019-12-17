@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonManager : MonoBehaviour
+public class ButtonManager_A  : MonoBehaviour
 {
     GameObject messagePanel;
     Text panelText;
@@ -19,7 +19,7 @@ public class ButtonManager : MonoBehaviour
         messagePanel = GameObject.Find("PushPanel");
         panelText = GameObject.Find("PushMessage").GetComponent<Text>();
         pullButton = GameObject.Find("PullButton");
-        push_text = "Atta boy! Good job! Now pull it back.";
+        push_text = "Atta boy! Good job! \nNow pull it back.";
         push_not_text = "Coming in: ";
         messagePanel.SetActive(false);
         pullButton.SetActive(false);
