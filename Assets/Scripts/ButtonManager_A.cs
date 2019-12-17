@@ -9,13 +9,11 @@ public class ButtonManager_A  : MonoBehaviour
     Text panelText;
     GameObject pullButton;
     string push_text, push_not_text;
-    //AudioSource audioSource;
 
     // Start is called before the first frame update
    
     void Start()
     {
-        //audioSource = GetComponent<AudioSource>();
         messagePanel = GameObject.Find("PushPanel");
         panelText = GameObject.Find("PushMessage").GetComponent<Text>();
         pullButton = GameObject.Find("PullButton");
@@ -23,12 +21,6 @@ public class ButtonManager_A  : MonoBehaviour
         push_not_text = "Coming in: ";
         messagePanel.SetActive(false);
         pullButton.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (simpleText && simpleTextOn) StartCoroutine(AnimateText(push_text));
     }
 
     public void SimplePush()
@@ -43,11 +35,6 @@ public class ButtonManager_A  : MonoBehaviour
         messagePanel.SetActive(true); 
         StartCoroutine(AnimateNotPush(push_not_text));
     }
-
-    //public void PushHarder()
-    //{
-    //    audioSource.Play();
-    //}
 
     public void SimplePull()
     {
