@@ -76,7 +76,7 @@ public class ButtonManager_B : MonoBehaviour
 
     IEnumerator AnimateNotPush(string _text)
     {
-        this.text.fontSize = 80;
+        this.text.fontSize = 75;
         for(int i = 3;  i > 0; i--)
         {
             this.text.text = _text + i;
