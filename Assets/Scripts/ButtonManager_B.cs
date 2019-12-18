@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,13 +26,14 @@ public class ButtonManager_B : MonoBehaviour
     public void SimplePush()
     {
         panel.SetActive(true);
-     
+        ActivateButtons(false);
         StartCoroutine(AnimatePush(push_text));
     }
 
     public void PushNot()
     {
-        panel.SetActive(true); 
+        panel.SetActive(true);
+        ActivateButtons(false);
         StartCoroutine(AnimateNotPush(push_not_text));
     }
 
@@ -45,6 +47,13 @@ public class ButtonManager_B : MonoBehaviour
         text.text = "";
         pullButton.SetActive(false);
         panel.SetActive(false);
+        ActivateButtons(true);
+
+    }
+
+    void ActivateButtons(bool c)
+    {
+        gameObject.GetComponentsInChildren<Button>().Select(b => b.enabled = c).ToArray();
     }
 
     IEnumerator AnimatePush(string _text)

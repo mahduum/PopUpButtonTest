@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class ButtonManager_A  : MonoBehaviour
     GameObject messagePanel;
     Text panelText;
     GameObject pullButton;
+    GameObject[] UILayers;
     string push_text, push_not_text;
 
     // Start is called before the first frame update
@@ -17,6 +19,7 @@ public class ButtonManager_A  : MonoBehaviour
         messagePanel = GameObject.Find("PushPanel");
         panelText = GameObject.Find("PushMessage").GetComponent<Text>();
         pullButton = GameObject.Find("PullButton");
+        UILayers = GameObject.FindGameObjectsWithTag("CanvasLayer");
         push_text = "Atta boy! Good job! \nNow pull it back.";
         push_not_text = "Coming in: ";
         messagePanel.SetActive(false);
@@ -26,13 +29,14 @@ public class ButtonManager_A  : MonoBehaviour
     public void SimplePush()
     {
         messagePanel.SetActive(true);
-     
+        ActivateLayerButtons(0, false);
         StartCoroutine(AnimatePush(push_text, 0.05f));
     }
 
     public void PushNot()
     {
-        messagePanel.SetActive(true); 
+        messagePanel.SetActive(true);
+        ActivateLayerButtons(0, false);
         StartCoroutine(AnimateNotPush(push_not_text));
     }
 
@@ -41,6 +45,12 @@ public class ButtonManager_A  : MonoBehaviour
         panelText.text = "";
         pullButton.SetActive(false);
         messagePanel.SetActive(false);
+        ActivateLayerButtons(0, true);
+    }
+
+    void ActivateLayerButtons(int i, bool c)
+    {
+        UILayers[i].GetComponentsInChildren<Button>().Select(b => b.enabled = c).ToArray();
     }
 
     IEnumerator AnimatePush(string text, float sec)
